@@ -76,6 +76,11 @@ app.use(
 //   console.log("We are connected bro");
 // });
 
+app.get("/", (req, res) => {
+  // console.log(req.session);
+  res.send("Hello");
+});
+
 app.get("/test", (req, res) => {
   // console.log(req.session);
   res.send(req.session);
