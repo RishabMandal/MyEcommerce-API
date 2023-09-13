@@ -51,7 +51,10 @@ app.use(
 
 app.use(
   cors({
-    origin: ["https://myecommerce-seven.vercel.app"],
+    origin: [
+      "https://myecommerce-seven.vercel.app",
+      "https://my-ecommerce-api-2.vercel.app/signup",
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   })
@@ -126,13 +129,13 @@ app.post("/signup", (req, res) => {
 //   findAcc(email, password);
 // });
 
-// app.get("/logout", (req, res) => {
-//   req.session.username = "";
-//   req.session.email = "";
-//   req.session.loggedIn = false;
-//   req.session.isAdmin = false;
-//   res.status(200).redirect("index");
-// });
+app.get("/logout", (req, res) => {
+  req.session.username = "";
+  req.session.email = "";
+  req.session.loggedIn = false;
+  req.session.isAdmin = false;
+  res.status(200).redirect("index");
+});
 
 // My try
 app.get("/verify-cookie", (req, res) => {
