@@ -6,17 +6,17 @@ const session = require("express-session");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./.env" });
 
-mongoose
-  // .connect(`mongodb://${process.env.DB_URL}`)
-  //   .connect(`mongodb://localhost:27017/myecommerce`)
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(console.log("Connected to db"))
-  .catch((error) => console.error("MongoDb " + error));
+// mongoose
+//   // .connect(`mongodb://${process.env.DB_URL}`)
+//   //   .connect(`mongodb://localhost:27017/myecommerce`)
+//   .connect(process.env.MONGO_URL, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(console.log("Connected to db"))
+//   .catch((error) => console.error("MongoDb " + error));
 
-let db = mongoose.connection;
+// let db = mongoose.connection;
 
 // My try
 const cookieParser = require("cookie-parser");
@@ -40,22 +40,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     secret: "thisisasecretkey",
-    // proxy: true,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false, // Set to true for HTTPS
-      // httpOnly: true,
-      // path: "/",
+      secure: false,
       maxAge: 3600000, // Session duration in milliseconds (1 hour in this example)
     },
-    // username: "",
-    // email: "",
-    // loggedIn: false,
-    // isAdmin: {
-    //   type: Boolean,
-    //   default: false,
-    // },
   })
 );
 
@@ -66,15 +56,6 @@ app.use(
     credentials: true,
   })
 );
-
-// mongoose.set("strictQuery", true);
-// mongoose.connect("mongodb://localhost:27017", { useNewUrlParser: true });
-
-// var db = mongoose.connection;
-// db.on("error", console.error.bind(console, "connection error:"));
-// db.once("open", function () {
-//   console.log("We are connected bro");
-// });
 
 app.get("/", (req, res) => {
   // console.log(req.session);
@@ -169,12 +150,25 @@ app.get("/verify-cookie", (req, res) => {
 
 app.get("/MainPage", async (req, res) => {
   try {
+    await mongoose
+      // .connect(`mongodb://${process.env.DB_URL}`)
+      //   .connect(`mongodb://localhost:27017/myecommerce`)
+      .connect(process.env.MONGO_URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
+      .then(console.log("Connected to db"))
+      .catch((error) => console.error("MongoDb " + error));
+
+    let db = mongoose.connection;
+
     const data = await db.collection("availableproducts").find().toArray();
     // console.log(data);
     // return NextResponse.json(data);
     // res.send(JSON.parse(data));
     // res.end(JSON.stringify(data));
     res.send(data);
+    // res.send("Ok");
   } catch (error) {
     console.log(error);
     // return NextResponse.json({
