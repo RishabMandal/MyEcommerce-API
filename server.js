@@ -26,7 +26,7 @@ const app = express();
 // My try
 app.use(cookieParser());
 
-// app.use("/static", express.static("static"));
+app.use("/static", express.static("static"));
 app.set("trust proxy", 1);
 app.use(
   cors({
@@ -39,6 +39,7 @@ app.use(
     credentials: true,
   })
 );
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -59,7 +60,7 @@ app.use(
   cors({
     origin: [
       "https://myecommerce-seven.vercel.app",
-      "https://my-ecommerce-api-2.vercel.app/signup",
+      "https://my-ecommerce-api-2.vercel.app",
     ],
     methods: ["GET", "POST"],
     credentials: true,
@@ -77,7 +78,7 @@ app.get("/test", (req, res) => {
 });
 
 app.post("/signup", (req, res) => {
-  var mail = req.body.email;
+  let mail = req.body.email;
 
   //   Account.find({ email: mail }, (err, docs) => {
   //     if (docs.length > 0) {
@@ -86,6 +87,9 @@ app.post("/signup", (req, res) => {
   //     } else {
   req.session.username = req.body.name;
   req.session.email = mail;
+//   console.log(req.session.email);
+  console.log(req.body);
+//   console.log(req);
   req.session.loggedIn = true;
   if (req.body.admin) {
     req.session.isAdmin = true;
@@ -95,7 +99,7 @@ app.post("/signup", (req, res) => {
     req.body.isAdmin = false;
   }
   // console.log(req.body);
-  // console.log(req.session);
+  console.log(req.session);
   res.send(req.session);
 
   //   var userData = new Account(req.body);
