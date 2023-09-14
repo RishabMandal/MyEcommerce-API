@@ -45,6 +45,7 @@ app.use(
     cookie: {
       secure: false,
       maxAge: 3600000, // Session duration in milliseconds (1 hour in this example)
+      sameSite: "none",
     },
   })
 );
