@@ -48,6 +48,7 @@ app.use(
     secret: "thisisasecretkey",
     resave: false,
     saveUninitialized: false,
+    name: "MyEcommerceApp",
     cookie: {
       secure: true,
       maxAge: 3600000, // Session duration in milliseconds (1 hour in this example)
