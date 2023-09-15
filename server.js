@@ -51,21 +51,9 @@ app.use(
     cookie: {
       secure: false,
       maxAge: 3600000, // Session duration in milliseconds (1 hour in this example)
-      sameSite: "none",
     },
   })
 );
-
-// app.use(
-//   cors({
-//     origin: [
-//       "https://myecommerce-seven.vercel.app",
-//       "https://my-ecommerce-api-2.vercel.app",
-//     ],
-//     methods: ["GET", "POST"],
-//     credentials: true,
-//   })
-// );
 
 app.get("/", (req, res) => {
   // console.log(req.session);
@@ -73,7 +61,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/test", (req, res) => {
-  // console.log(req.session);
+  console.log(req.session);
   res.send(req.session);
 });
 
