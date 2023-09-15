@@ -49,8 +49,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false,
+      secure: true,
       maxAge: 3600000, // Session duration in milliseconds (1 hour in this example)
+      sameSite: "none",
     },
   })
 );
@@ -75,9 +76,9 @@ app.post("/signup", (req, res) => {
   //     } else {
   req.session.username = req.body.name;
   req.session.email = mail;
-//   console.log(req.session.email);
+  //   console.log(req.session.email);
   console.log(req.body);
-//   console.log(req);
+  //   console.log(req);
   req.session.loggedIn = true;
   if (req.body.admin) {
     req.session.isAdmin = true;
