@@ -48,6 +48,7 @@ app.use(
     secret: "thisisasecretkey",
     resave: false,
     saveUninitialized: false,
+    proxy: true,
     name: "MyEcommerceApp",
     cookie: {
       secure: true,
