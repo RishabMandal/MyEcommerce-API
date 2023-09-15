@@ -56,16 +56,16 @@ app.use(
   })
 );
 
-app.use(
-  cors({
-    origin: [
-      "https://myecommerce-seven.vercel.app",
-      "https://my-ecommerce-api-2.vercel.app",
-    ],
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: [
+//       "https://myecommerce-seven.vercel.app",
+//       "https://my-ecommerce-api-2.vercel.app",
+//     ],
+//     methods: ["GET", "POST"],
+//     credentials: true,
+//   })
+// );
 
 app.get("/", (req, res) => {
   // console.log(req.session);
