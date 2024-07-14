@@ -34,6 +34,7 @@ app.use(
       "http://localhost:3000",
       "http://localhost:5000",
       "https://myecommerce-seven.vercel.app",
+      "https://shopkart-v2.vercel.app",
     ],
     methods: ["GET", "HEAD", "POST"],
     credentials: true,
